@@ -7,6 +7,22 @@
 
 module.exports = {
   find: function (req, res) {
-    return res.json(403, 'Single model lookup is denied.');
+    Store.count().exec((err, numberOfStores) => {
+      if (err) { return res.negotiate(err); }
+      if (!numberOfStores) { return res.notFound(); }
+
+      Store.find({
+        limit: 10,
+        skip: req.param('skip'),
+      })
+      .exec((err, foundStores) => {
+        if (err) { return res.serverError(err); }
+
+        return res.json({
+          total: numberOfStores,
+          data: foundStores,
+        });
+      });
+    });
   }
 };
