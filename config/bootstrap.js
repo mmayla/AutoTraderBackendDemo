@@ -10,9 +10,38 @@
  */
 
 module.exports.bootstrap = function(done) {
+  const Passwords = require('machinepack-passwords');
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  return done();
+  User.findOne({
+    email: 'admin@botcommander.io',
+  }).exec((err, user) => {
+    if (err) {
+      return done(err);
+    }
 
+    if (user) {
+      return done();
+    }
+
+    Passwords.encryptPassword({
+      password: '12345',
+    }).exec({
+      error: (err) => {
+        return done(err);
+      },
+
+      success: (result) => {
+        let options = {};
+        options.email = 'admin@botcommander.io';
+        options.encryptedPassword = result;
+        options.deleted = false;
+        User.create(options).exec((err, user) => {
+          if (err) {
+            return done(err);
+          }
+          return done();
+        });
+      },
+    });
+  });
 };

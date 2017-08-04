@@ -8,9 +8,20 @@
 module.exports = {
 
   attributes: {
+    email: {
+      type: 'string',
+      isEmail: true,
+      unique: true,
+      required: true,
+    },
 
+    encryptedPassword: {
+      type: 'string',
+    },
 
+    deleted: {
+      type: 'boolean',
+    },
   },
 
 };
-

@@ -35,5 +35,8 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+  'PUT /login': 'UserController.login',
+  'POST /logout': 'UserController.logout',
 
+  'GET /cars': 'CarController.find',
 };
