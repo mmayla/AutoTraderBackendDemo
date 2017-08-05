@@ -5,8 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
- var Emailaddresses = require('machinepack-emailaddresses');
- var Passwords = require('machinepack-passwords');
+var Emailaddresses = require('machinepack-emailaddresses');
+var Passwords = require('machinepack-passwords');
 var Strings = require('machinepack-strings');
 
 module.exports = {
@@ -68,6 +68,26 @@ module.exports = {
       req.session.userId = null;
 
       return res.ok();
+    });
+  },
+
+  getUsers: (req, res) => {
+    User.count().exec((err, numberOfUsers) => {
+      if (err) { return res.negotiate(err); }
+      if (!numberOfUsers) { return res.notFound(); }
+
+      User.find({
+        limit: 10,
+        skip: req.param('skip'),
+      })
+      .exec((err, foundUsers) => {
+        if (err) { return res.serverError(err); }
+
+        return res.json({
+          total: numberOfUsers,
+          data: foundUsers,
+        });
+      });
     });
   },
 };

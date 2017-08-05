@@ -7,7 +7,7 @@
   "dependencies": {
     "async": "2.0.1",
     "grunt": "1.0.1",
-    "lodash": "^3.10.1",
+    "lodash": "^4.17.4",
     "machinepack-emailaddresses": "^0.4.0",
     "machinepack-passwords": "^2.3.0",
     "machinepack-strings": "^5.1.0",
