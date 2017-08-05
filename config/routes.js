@@ -40,5 +40,8 @@ module.exports.routes = {
 
   'GET /cars': 'CarController.find',
 
+  'POST /stores': 'StoreController.createStore',
+  'POST /stores/:storeId/cars': 'StoreController.addCar',
   'GET /stores': 'StoreController.find',
+  'GET /stores/:storeId/cars': 'StoreController.browseCars',
 };

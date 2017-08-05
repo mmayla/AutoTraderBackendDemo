@@ -27,6 +27,10 @@ module.exports = {
     deleted: {
       type: 'boolean',
     },
+
+    store: {
+      model: 'store',
+    },
   },
 
 };

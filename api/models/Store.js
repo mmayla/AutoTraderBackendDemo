@@ -8,9 +8,20 @@
 module.exports = {
 
   attributes: {
+    name: {
+      type: 'string',
+      required: true,
+    },
 
+    cars: {
+      collection: 'car',
+      via: 'store',
+    },
 
+    owners: {
+      collection: 'user',
+      via: 'store',
+    },
   },
 
 };
-

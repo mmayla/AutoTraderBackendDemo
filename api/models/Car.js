@@ -8,9 +8,24 @@
 module.exports = {
 
   attributes: {
+    name: {
+      type: 'string',
+      required: true,
+    },
 
+    year: {
+      type: 'integer',
+      required: true,
+    },
 
+    price: {
+      type: 'integer',
+      required: true,
+    },
+
+    store: {
+      model: 'store',
+    },
   },
 
 };
-
