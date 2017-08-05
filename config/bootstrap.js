@@ -35,6 +35,7 @@ module.exports.bootstrap = function(done) {
         options.email = 'admin@botcommander.io';
         options.encryptedPassword = result;
         options.deleted = false;
+        options.admin = false;
         User.create(options).exec((err, user) => {
           if (err) {
             return done(err);

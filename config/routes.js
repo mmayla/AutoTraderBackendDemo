@@ -39,4 +39,6 @@ module.exports.routes = {
   'POST /logout': 'UserController.logout',
 
   'GET /cars': 'CarController.find',
+
+  'GET /stores': 'StoreController.find',
 };

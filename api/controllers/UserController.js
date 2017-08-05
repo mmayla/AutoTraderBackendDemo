@@ -13,10 +13,11 @@ module.exports = {
 
   login: (req, res) => {
     User.findOne({
-      email: req.param('email')
-    }, (err, user) => {
+      email: req.param('email'),
+    }).exec((err, user) => {
       if (err) {
-        return res.negotiate(err);
+        sails.log.error(err);
+        return res.badRequest(err);
       }
       if (!user) {
         return res.notFound();
@@ -27,7 +28,8 @@ module.exports = {
         encryptedPassword: user.encryptedPassword,
       }).exec({
         error: (err) => {
-          return res.negotiate(err);
+          sails.log.error(err);
+          return res.badRequest(err);
         },
 
         incorrect: () => {
@@ -41,7 +43,11 @@ module.exports = {
 
           req.session.userId = user.id;
 
-          return res.ok();
+          return res.ok({
+            userId: user.id,
+            username: user.email,
+            admin: user.admin,
+          });
         }
       });
     });
