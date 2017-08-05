@@ -37,11 +37,12 @@ module.exports.routes = {
   ***************************************************************************/
   'PUT /login': 'UserController.login',
   'POST /logout': 'UserController.logout',
+  'GET /users': 'UserController.getUsers',
 
   'GET /cars': 'CarController.find',
 
   'POST /stores': 'StoreController.createStore',
   'POST /stores/:storeId/cars': 'StoreController.addCar',
   'GET /stores': 'StoreController.find',
-  'GET /stores/:storeId/cars': 'StoreController.browseCars',
+  'GET /stores/:storeId/cars': 'StoreController.getCars',
 };
