@@ -15,6 +15,8 @@ module.exports = {
         limit: 10,
         skip: req.param('skip'),
       })
+      .populate('cars')
+      .populate('owners')
       .exec((err, foundStores) => {
         if (err) { return res.serverError(err); }
 

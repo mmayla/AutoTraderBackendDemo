@@ -14,7 +14,8 @@ module.exports = {
   login: (req, res) => {
     User.findOne({
       email: req.param('email'),
-    }).exec((err, user) => {
+    })
+    .exec((err, user) => {
       if (err) {
         sails.log.error(err);
         return res.badRequest(err);
