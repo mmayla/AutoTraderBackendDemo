@@ -38,6 +38,7 @@ module.exports.routes = {
   'PUT /login': 'UserController.login',
   'POST /logout': 'UserController.logout',
   'GET /users': 'UserController.getUsers',
+  'GET /users/:id': 'UserController.getUser',
 
   'GET /cars': 'CarController.find',
 

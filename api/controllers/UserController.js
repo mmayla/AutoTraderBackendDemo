@@ -90,4 +90,24 @@ module.exports = {
       });
     });
   },
+
+  getUser: (req, res) => {
+    User.findOne({
+      id: req.param('id'),
+    }).exec((err, user) => {
+      if (err) {
+        return res.serverError(err);
+      }
+
+      if (!user) {
+        return res.notFound();
+      }
+
+      return res.json({
+        id: user.id,
+        email: user.email,
+        admin: user.admin,
+      });
+    });
+  },
 };
